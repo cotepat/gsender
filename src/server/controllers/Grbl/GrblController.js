@@ -1094,6 +1094,11 @@ class GrblController {
                 return;
             }
 
+            this.connection.port.set({ dtr: false, rts: true });
+            setTimeout(() => {
+                this.connection.port.set({ dtr: false, rts: false });
+            }, 300);
+
             this.emit('serialport:open', {
                 port: port,
                 baudrate: baudrate,
